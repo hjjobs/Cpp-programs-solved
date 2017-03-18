@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(void) {
+	int t,i,j,k;
+	long int n;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		long long int sum=0;
+		scanf("%ld",&n);
+		long long int a[50000];
+		for(j=0;j<n;j++)
+		{
+			scanf("%lld",&a[j]);
+			sum=sum+a[j];
+		}
+		sum=sum/(n-1);
+		for(k=0;k<n;k++)
+		{
+			printf("%lld ",sum-a[k]);
+		}
+		printf("\n");
+	}
+	return 0;
+}

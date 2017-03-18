@@ -1,0 +1,51 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+long long int max1(long long int a[],long long int n)
+{
+	long long int p,e;	
+	long long int max=0;
+	for(e=0;e<n;e++)
+	{
+		if(a[e]>max)
+		{
+			max=a[e];
+			p=e;
+		}
+	}
+	return p;
+}
+int main() {
+	long long int n,x,bleft,max,min;
+	int t,i,j,k;
+	cin>>t;
+	for(i=0;i<t;i++)
+	{
+		cin>>n;
+		cin>>x;
+		long long int a[n];
+		for(j=0;j<n;j++)
+		{
+			cin>>a[j];
+		}
+		bleft=x-n;
+		while(bleft>0)
+		{
+			long long int s=max1(a,n);
+			double y=((double)a[s]/2.0);
+			y=ceil(y);
+			a[s]=y;
+			bleft--;
+		}
+		min=a[0];
+		for(j=0;j<n;j++)
+		{
+			if(min<a[j])
+			{
+				min=a[j];
+			}
+		}
+		cout<<min<<"\n";
+	}
+	return 0;
+}

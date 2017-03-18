@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main() {
+	int t,k,j;
+	string s1;
+	string s2;
+	cin>>t;
+	for(i=0;i<t;i++)
+	{
+		cin>>s1>>k;
+		int l=strlen(s1);
+		if(k>=l)
+		{
+			cout<<s1<<"\n";
+		}
+		else
+		{
+			j=0;
+			int temp=k;
+			while(j<k)
+			{
+				if(j+k>l)
+				{
+					j++;
+				}
+				else
+				{
+					cout<<s[j];
+					j=j+k;
+				}
+			}
+		}
+		
+	}
+	return 0;
+}

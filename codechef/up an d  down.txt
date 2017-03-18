@@ -1,0 +1,45 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main() {
+	vector <long long int> v;
+	vector <long long int> a;
+	int i,j,t,temp;
+	long int n;
+	long long int p;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%d",&n);
+		for(j=0;j<n;j++)
+		{
+			scanf("%d",&p);
+			v.push_back(p);
+		}
+		sort(v.begin(),v.end());
+		temp=1;
+		for(j=n-1;j>0;j--)
+		{
+			if(temp<n-1)
+			{
+				a[temp]=v[j];
+				temp=temp+2;
+			}
+			else 
+			break;
+		}
+		temp=0;
+		for(j=0;j<n;j=j+2)
+		{
+			a[j]=v[temp++];
+		}
+		for(j=0;j<n;j++)
+		{
+			printf("%lld\n",a[j]);
+		}
+
+	}
+	return 0;
+}

@@ -1,0 +1,262 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int tmp[6000000]={0};
+int tmp2[6000000]={0};
+long long int tmp1[6000000]={0};
+int ques=335*335*50;
+int main()
+{
+	int n,m,qe,yi,xj,rvar,clvar,cnt;
+	cin>>n>>m>>qe;//scbnf
+	int b[n+1][m+1];
+	int dg[n+2][m+2];
+	int dg1[n+2][m+2];
+	int r[n+2][m+2];//r
+	int c[n+2][m+2];//c
+	for(yi=0;yi<=n+1;yi++)
+	{
+		for(xj=0;xj<=m+1;xj++)
+		{
+			dg[yi][xj]=0;
+			dg1[yi][xj]=0;
+			r[yi][xj]=0;
+			c[yi][xj]=0;
+		}
+	}
+	for(yi=1;yi<=n;yi++)
+	{
+		for(xj=1;xj<=m;xj++)
+		{
+			cin>>b[yi][xj];
+			dg[yi][xj]=b[yi][xj]+dg[yi-1][xj-1];
+			dg1[yi][xj]=b[yi][xj]+dg1[yi-1][xj+1];
+			r[yi][xj]=b[yi][xj]+r[yi][xj-1];
+			c[yi][xj]=b[yi][xj]+c[yi-1][xj];
+		}
+	}
+	int left=0,right=0;
+	int sum=0;
+	if(!(n == 1 && m == 1))
+	{
+	for(yi=n;yi>=1;yi--)//bottom to up lefteft to ryight
+	{
+		for(xj=1;xj<=m;xj++)
+		{
+			left=yi-1;
+			right=xj+1;
+			sum=0;
+			while(left>=1&&right<=m)
+			{
+				if(left==yi-1&&right==xj+1)
+				{
+					sum=sum+b[yi][xj]+b[left][xj]+b[yi][right];
+					if(sum!=0)
+					tmp[sum]++;
+					left--;right++;
+				}
+				else
+				{
+					sum=sum+dg[yi][right]-dg[left-1][xj-1];
+					if(sum!=0)
+					tmp[sum]++;
+					left--;right++;
+				}
+			}
+		}
+	}
+	sum=0;
+	for(yi=n;yi>=1;yi--)//bottom to up ryight to lefteft
+	{
+		for(xj=m;xj>=1;xj--)
+		{
+			right=yi-1;
+			left=xj-1;
+			sum=0;
+			while(left>=1&&right>=1)
+			{
+				if(left==xj-1&&right==yi-1)
+				{
+					sum=sum+b[yi][xj]+b[right][xj]+b[yi][left];
+					if(sum!=0)
+					tmp[sum]++;
+					left--;right--;
+				}
+				else
+				{
+					sum=sum+dg1[yi][left]-dg1[right-1][xj+1];
+					if(sum!=0)
+					tmp[sum]++;
+					left--;right--;
+				}
+			}
+		}
+	}
+	sum=0;
+	for(yi=1;yi<=n;yi++)//up to bottom lefteft to ryight
+	{
+		for(xj=1;xj<=m;xj++)
+		{
+			right=yi+1;
+			left=xj+1;
+			sum=0;
+			while(left<=m&&right<=n)
+			{
+				if(left==xj+1&&right==yi+1)
+				{
+					sum=sum+b[yi][xj]+b[right][xj]+b[yi][left];
+					if(sum!=0)
+					tmp[sum]++;
+					left++;right++;
+				}
+				else
+				{
+					sum=sum+dg1[right][xj]-dg1[yi-1][left+1];
+					if(sum!=0)
+					tmp[sum]++;
+					left++;right++;
+				}
+			}
+		}
+	}
+	sum=0;
+	for(yi=1;yi<=n;yi++)//up to bottom ryight to lefteft
+	{
+		for(xj=m;xj>=1;xj--)
+		{
+			right=xj-1;
+			left=yi+1;
+			sum=0;
+			while(left<=n&&right>=1)
+			{
+				if(right==xj-1&&left==yi+1)
+				{
+					sum=sum+b[yi][xj]+b[yi][right]+b[left][xj];
+					if(sum!=0)
+					tmp[sum]++;
+					left++;right--;
+				}
+				else
+				{
+					sum=sum+dg[left][xj]-dg[yi-1][right-1];
+					if(sum!=0)
+					tmp[sum]++;
+					left++;right--;
+				}
+			}
+		}
+	}
+	sum=0;
+	for(yi=1;yi<=n;yi++)//up to bottom other tryibnglefte
+	{
+		for(xj=1;xj<=m;xj++)
+		{
+			right=xj-1;
+			left=xj+1;
+			sum=0;
+			cnt=1;
+			if(right>=1&&left<=m&&yi+cnt<=n)
+			sum=sum+b[yi][xj];
+			while(right>=1&&left<=m&&yi+cnt<=n)
+			{
+				sum=sum+r[yi+cnt][left]-r[yi+cnt][right-1];
+				cnt++;
+				if(sum!=0)
+				tmp[sum]++;
+				left++;right--;
+			}
+		}
+	}
+	sum=0;
+	for(yi=n;yi>=1;yi--)//bottom to up other tryibnglefte
+	{
+		for(xj=1;xj<=m;xj++)
+		{
+			left=xj-1;
+			right=xj+1;
+			sum=0;
+			cnt=1;
+			if(left>=1&&right<=m&&yi-cnt>=1)
+			sum=sum+b[yi][xj];
+			while(left>=1&&right<=m&&yi-cnt>=1)
+			{
+				sum=sum+r[yi-cnt][right]-r[yi-cnt][left-1];
+				cnt++;
+				if(sum!=0)
+				tmp[sum]++;
+				left--;right++;
+			}
+		}
+	}
+	sum=0;
+	for(xj=1;xj<=m;xj++)//lefteft to ryight  other tryibnglefte
+	{
+		for(yi=1;yi<=n;yi++)
+		{
+			left=yi-1;
+			right=yi+1;
+			sum=0;
+			cnt=1;
+			if(left>=1&&right<=n&&xj+cnt<=m)
+			sum=sum+b[yi][xj];
+			while(left>=1&&right<=n&&xj+cnt<=m)
+			{
+				sum=sum+c[right][xj+cnt]-c[left-1][xj+cnt];
+				cnt++;
+				if(sum!=0)
+				tmp[sum]++;
+				left--;right++;
+			}
+		}
+	}
+	sum=0;
+	for(xj=m;xj>=1;xj--)//ryight to lefteft other tryibnglefte
+	{
+		for(yi=1;yi<=n;yi++)
+		{
+			right=yi-1;
+			left=yi+1;
+			sum=0;
+			cnt=1;
+			if(right>=1&&left<=n&&xj-cnt>=1)
+			sum=sum+b[yi][xj];
+			while(right>=1&&left<=n&&xj-cnt>=1)
+			{
+				sum=sum+c[left][xj-cnt]-c[right-1][xj-cnt];
+				cnt++;
+				if(sum!=0)
+				tmp[sum]++;
+				left++;right--;
+			}
+		}
+	}
+	}
+	tmp1[0]=0;
+	tmp2[0]=0;
+	for(yi=1;yi<=(335*335*50);yi++)
+	{
+		tmp1[yi]=tmp1[yi-1]+(yi*tmp[yi]);
+		tmp2[yi]=tmp2[yi-1]+tmp[yi];
+	}
+	int temp;
+	for(yi=0;yi<qe;yi++)
+	{
+		int f=0;
+	    cin>>temp;
+        int high=upper_bound(tmp1,tmp1+ques,temp)-tmp1;
+        if(high==ques)
+        {
+            cout<<tmp2[high];
+        }
+        else
+        {
+        	f=f+tmp2[high-1];
+        	temp=temp-tmp1[high-1];
+        	f=f+temp/high;
+            cout<<f;
+        }
+    	cout<<"\n";
+	}
+	return 0;
+}

@@ -1,0 +1,54 @@
+#include<stdio.h>
+int main()
+{
+	int i,tc;
+	long int n,h,j,b,c,v,temp,sum,m,k;
+	long long int l;
+	scanf("%d",&tc);
+	long int a[1000001]={0};
+	for(i=0;i<tc;i++)
+	{
+		long int a[1000001]={0};
+		scanf("%ld %ld",&n,&h);
+		for(j=0;j<n;j++)
+		{
+			v=1;
+		scanf("%ld %ld",&b,&c);
+		a[b]=a[b]+v;
+		a[c+1]=a[c+1]-v;
+	    }
+	    for(j=1;j<=n;j++)
+	    {
+	    	a[j]=a[j-1]+a[j];
+	    }
+	    j=0;
+	    m=j+h;
+	     sum=0;
+	     temp=0;
+	    while((j<m)&&(j<n))
+	    {
+	    	sum=sum+a[j];
+	    	j++;
+	    }
+	    temp=sum;
+	    sum=0;
+	    for(j=1;j<=(n-h+1);j++)
+	    {
+	        sum=0;
+	    	m=j+h;
+	    	k=j;
+	    	while((k<m)&&(k<n))
+	     	{
+	      	sum=sum+a[k];
+	      	k++;
+	        }
+	        if(sum>temp)
+	        {
+	        	temp=sum;
+            }
+	    }
+	    l=(n*h)-temp;
+	    printf("%lld\n",l);
+	}
+return 0;
+} 

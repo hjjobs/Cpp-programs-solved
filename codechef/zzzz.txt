@@ -1,0 +1,39 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+int main() {
+	int t,i,p;
+	long long int n,m;
+	long long int a[20001];
+	cin>>t;
+	for(p=0;p<t;p++)
+	{
+		long long int count=0;
+		cin>>n>>m;
+		for(i=0;i<m;i++)
+		{
+			cin>>a[i];
+			if(a[i]==1)
+			{
+				count++;
+			}
+		}
+		int count1=m-count;
+		int temp=0;
+		if(count==m)
+		{
+			temp=count/2;
+		}
+		else
+		{
+			while(count>0&&count1>0)
+			{
+				count1=count1-2;
+				
+			}
+		}
+		cout<<temp<<endl;
+	}
+	return 0;
+}

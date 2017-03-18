@@ -1,0 +1,22 @@
+def frombase(x,b):
+    r= ''
+    import string
+    while x>0:
+        r=string.printable[long(x)%b]+r
+        x=long(x)//b
+    return r
+ 
+def tobase(s,b):
+    return long(s,b)
+ 
+for test in range(long(input())):
+    s1=str(input())
+    s2=str(input())
+    l=long(input())
+    a1=tobase(s1,7)
+    a2=tobase(s2,7)
+    ans=long(a1)/long(a2)
+    L=7**l
+    finalans=str(ans%L)
+    final=frombase(finalans,7)
+    print final

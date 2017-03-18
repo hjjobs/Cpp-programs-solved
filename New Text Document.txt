@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+#define max(a,b) ((a)>(b)?(a):(b))
+#define min(a,b) ((a)<(b)?(a):(b))
+#define abs(x) ((x)<0?-(x):(x))
+#define s(n) scanf("%d",&n)
+#define sl(n) scanf("%lld",&n)
+#define sf(n) scanf("%lf",&n)
+#define ss(n) scanf("%s",n)
+#define pii pair<int,int>
+#define m_p make_pair(n,m)
+#define mod 1000000007
+typedef long long int ll;
+long long int dp[1025][1025];
+int main()
+{
+	ios::sync_with_stdio(false);cin.tie(0);
+	int t,i,j,p,n;
+	cin>>t;
+	for(p=0;p<t;p++)
+	{
+		long long int arr[100001]={0};
+		ll sum=0;
+		ll ans;
+		string a;
+		string temp;
+		cin>>a;
+		for(j=0;j<10;j++)
+		{
+			if(a[j]=='w')
+			{
+				sum=sum+pow(2,9-j);
+			}
+		}
+		cin>>n;
+		for(i=0;i<n;i++)
+		{
+			ll sum1=0;
+			cin>>temp;
+			for(j=0;j<10;j++)
+			{
+				if(temp[j]=='+')
+				{
+					sum1=sum1+pow(2,9-j);
+				}
+			}
+			arr[i]=sum1;
+		}
+		memset(dp,0,sizeof(dp));
+		dp[0][0] = 1;
+		for(i=1;i<=n;i++)
+		{
+			long long int a = arr[i-1];
+			for(j=0;j<1024;j++)
+			{
+				dp[i][j] = dp[i-1][j] + dp[i-1][j^a];
+				if(dp[i][j]>=mod)
+				{
+				    dp[i][j]-=mod; 
+				}
+			}
+		}
+		ans=dp[n][sum];
+		if(ans>=mod)
+		{
+		    ans-=mod;
+		}
+    cout<<ans<<"\n";
+	}
+	return 0;
+} 

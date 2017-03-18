@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);cin.tie(0);
+	int t,i,j;
+	double slope[100001];
+	double cept[100001];
+	long long int a,b,c;
+	cin>>t;
+	for(p=0;p<t;p++)
+	{
+		cin>>n;
+		for(i=0;i<n;i++)
+		{
+			cin>>a>>b>>c;
+			if(b==0)
+			{
+				slope[i]=INT_MAX;
+				cept[i]=INT_MAX;
+			}
+			else
+			{
+				slope[i]=-a/b;
+				cept[i]=-c/b;
+			}
+		}
+		pair<double,double> AB[n];
+		for(i=0;i<n;i++)
+    	{
+      		AB[i].first=slope[i];
+      		AB[i].second=cept[i];
+	 	}
+	 	sort(AB,AB+n);
+	 	for(i=0;i<n;i++)
+    	{
+      		slope[i]=AB[i].first;
+      		cept[i]=AB[i].second;
+    	}
+    	for(i=0;i<n-1;i++)
+    	{
+    		if(slope[i]==slope[i+1])
+    	}
+	}
+	return 0;
+}

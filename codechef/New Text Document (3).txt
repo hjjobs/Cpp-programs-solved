@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <math.h>
+int main(void) {
+	long long int n,i,a;
+	scanf("%lld",&n);
+	double p=pow(n,0.33);
+	a=0;
+	long long int l;
+	long long int q;
+	for(i=1;i<=sqrt(n);i++)
+	{
+		if(n%i==0&&(p<=i)&&(i<=pow(2,0.66)*p))
+		{
+			a=i;
+		}
+	}
+	if(a==0)
+	{
+		printf("No\n");
+	}
+	else
+	{
+		if((((a*a*a)-n)/a)%3==0)
+		{
+			l=(((a*a*a)-n)/a)/3;
+			q=(a*a)-4*l;
+			for(j=1;j<=sqrt(q);j++)
+			{
+				
+				if(q%j==0&&(q/j)%j==0)
+				{
+					printf("Yes\n");
+				}
+				else
+				{
+					printf("No\n");
+				}
+			}
+		}
+		else
+		{
+			printf("No\n");
+		}
+	}
+	
+	return 0;
+}

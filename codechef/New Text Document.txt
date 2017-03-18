@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n,i;
+	int sum=0;
+	int a[10]={6,2,5,5,4,5,6,3,7,6};
+	char c[100];
+	cin>>c;
+	for(i=0;i!='\0';i++)
+	{
+		int p;
+		p=c[i]-'0';
+		sum=sum+a[p];
+	}
+	cout<<sum;
+    cout <<endl;
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main(void) {
+	long long int t,i,j,c;
+	long long int n;
+	long long int a[100001];
+	long long int p[100001];
+	long long int b[100001];
+	scanf("%lld",&n);
+	scanf("%lld",&t);
+	for(i=1;i<=n;i++)
+	{
+		scanf("%lld",&a[i]);
+	}
+	for(j=1;j<=n;j++)
+	{
+		scanf("%lld",&p[j]);
+	}
+	while(t!=0)
+	{
+		for(j=1;j<=n;j++)
+		{
+			b[j]=a[j];
+		}
+		for(j=1;j<=n;j++)
+		{
+			c=p[j];
+		    a[j]=b[c];	
+		}
+		t--;
+	}
+	for(j=1;j<=n;j++)
+	{
+		printf("%lld ",a[j]);
+	}
+	return 0;
+}

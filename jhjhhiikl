@@ -1,0 +1,6 @@
+172.30.3.130:8080
+string.erase(std::remove_if(string.begin(), string.end(), std::isspace), string.end());
+
+
+
+9871358577

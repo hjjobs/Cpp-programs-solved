@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void) {
+	int t,i;
+	long int n,k;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		long int c;
+		scanf("%ld",&n);
+		scanf("%ld",&k);
+		c=n%k;
+		printf("%ld\n",c);
+	}
+	return 0;
+}

@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define max(a,b) ((a)>(b)?(a):(b))
+#define min(a,b) ((a)<(b)?(a):(b))
+#define abs(x) ((x)<0?-(x):(x))
+#define s(n) scanf("%d",&n)
+#define sl(n) scanf("%lld",&n)
+#define sf(n) scanf("%lf",&n)
+#define ss(n) scanf("%s",n)
+#define pii pair<int,int>
+#define m_p make_pair(n,m)
+#define mod 1000000007
+typedef long long int ll;
+struct second
+{
+	double slope;
+ 	double cept;
+};
+bool acompare(second a1, second a2)
+{ 
+ 	if(a1.slope!=a2.slope)
+ 	return a1.slope < a2.slope;
+ 	else if(a1.slope==a2.slope&&a1.cept!=a2.cept)
+ 	return a1.cept <a2.cept;
+}
+int main()
+{
+	ios::sync_with_stdio(false);cin.tie(0);
+	ll i,t,p,j,k;
+ 	struct second f[100003];
+ 	cin>>t;
+ 	for(p=0;p<t;p++)
+ 	{
+ 		ll n;
+ 		cin>>n;
+ 		ll e=1,ans=1;
+ 		for(j=0;j<n;j++)
+ 		{
+ 			cin>>a>>b>>c;
+ 			if(a==0&&b!=0)
+ 			{
+ 				f[j].slope=0;
+ 				f[j].cept=-((double)c/(double)b);
+ 			}
+ 			else if(a!=0&&b==0)
+ 			{
+ 				f[j].slope=mod;
+ 				f[j].cept=-((double)c/(double)a);
+ 			}
+ 			else if(g[j].a!=0&&g[j].b!=0)
+ 			{
+ 				f[j].slope=-((double)a/(double)b);
+ 				f[j].cept=-((double)c/(double)b);
+ 			}
+ 		}
+ 		sort(f,f+n,acompare);
+ 		double x,y,z;
+   		x=f[0].slope;
+   		y=f[0].cept;
+ 		for(j=1;j<n;j++)
+   		{
+   			if(f[j].slope==x&&f[j].cept!=y)
+   			{
+   				x=f[j].slope;
+   				y=f[j].cept;
+   				e++;
+   				if(e>ans)
+   				{
+   					ans=e;
+   				}
+   			}
+   			else if(f[j].slope==x&&f[j].cept==y)
+   			{
+   				x=f[j].slope;
+   				y=f[j].cept;
+   			}
+   			else if (f[j].slope!=x)
+   			{
+   				x=f[j].slope;
+   				y=f[j].cept;
+   				e=1;
+   			}
+   		}
+   		cout<<ans<<"\n";
+ 	}
+	return 0;
+}

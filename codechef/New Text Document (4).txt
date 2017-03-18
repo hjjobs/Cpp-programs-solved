@@ -1,0 +1,42 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+	long long int n;
+	int t,i,j,k,l,r,p;
+	int a[3]={0};
+	string s;
+	cin>>t;
+	for(i=0;i<t;i++)
+	{
+		cin>>s;
+		cin>>k;
+		for(j=0;j<k;j++)
+		{
+			long long int value;
+			cin>>a[0];
+			if(a[0]==0)
+			{
+				cin>>a[1]>>a[2];
+				l=a[1];
+				r=a[2];
+				value=r-l;
+				long long int sum=0;
+				for(p=l;p<=r;p++)
+				{
+					sum=sum+pow(2,value)*(s[p]-'0');
+					value--;
+				}
+				sum=sum%3;
+				cout<<sum<<"\n";
+			}
+			else
+			{
+				cin>>a[1];
+				s[a[1]]=='1';
+			}
+		}
+	}
+	return 0;
+}

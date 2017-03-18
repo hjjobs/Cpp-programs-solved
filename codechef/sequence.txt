@@ -1,0 +1,38 @@
+#include <stdio.h>
+void binary_search(long long int a[],long long int lo,long long  int hi,long long int s)
+{
+    long long int mid;
+    if (lo > hi)
+    {
+        return;
+    }
+    mid = (lo + hi) / 2;
+    if (a[mid] == s)
+    {
+        printf("%lld\n",mid);
+    }
+    else if (a[mid] >s)
+    {
+        binary_search(a,lo,mid-1,s);
+    }
+    else if (a[mid] < s)
+    {
+        binary_search(a,mid + 1,hi,s);
+    }
+}
+int main(void) {
+    long long int t,i,j;
+    long long int a[1000001]={0};
+    long long int s;
+    for(i=1;i<=1000000;i++)
+    {
+        a[i]=((2*i*i*i)+(6*i*i)+(124*i))/12;
+    }
+    scanf("%lld",&t);
+    for(j=0;j<t;j++)
+    {
+        scanf("%lld",&s);
+        binary_search(a,1,1000000,s);
+    }
+    return 0;
+}

@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main(void) {
+	int i,j,k,small,temp,flag;
+	long int t;
+	long int n;
+	long int a[100001];
+	scanf("%ld",&t);
+	for(i=0;i<t;i++)
+	{
+		scanf("%ld",&n);
+		for(j=0;j<n;j++)
+		{
+			scanf("%ld",&a[j]);
+		}
+		small=a[0];
+        for (k=1;k<n;k++) {
+                if (a[k]<small)
+                        small=a[k];
+        }
+        temp=0;
+        for (k=small;k>0;k--) {
+                for (j=0;j<n;j++) {
+                        if (a[j]%k!=0) {
+                                flag=1;
+                        }
+                }
+                if (!flag&&k!=1) {
+                        printf("%d\n",k);
+                        temp=1;
+                        break;
+                }
+                flag = 0;
+        }
+		if(temp!=1)
+		 printf("-1\n");
+	}
+	return 0;
+}

@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main(void) {
+	int i,j,t;
+	scanf("%d",&t);
+	for(i=0;i<t;i++)
+	{
+		int n,count=0;
+		scanf("%d",&n);
+		for(j=5;j<=n;j=j*5)
+		{
+			count=count+j;
+		}
+		printf("%d\n",count);
+	}
+	return 0;
+}
